@@ -1,0 +1,14 @@
+port: 7880
+
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 60000
+  use_external_ip: true
+
+# API key/secret are NOT stored here. docker-compose passes them as
+#   LIVEKIT_KEYS="<LIVEKIT_API_KEY>: <LIVEKIT_API_SECRET>"
+# so they always match what the app signs tokens with.
+
+redis:
+  address: redis:6379

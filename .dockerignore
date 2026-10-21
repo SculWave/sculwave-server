@@ -1,0 +1,10 @@
+node_modules
+.next
+dist
+.git
+.env
+npm-debug.log
+
+docker/postgres/data
+docker/redis/data
+data/media

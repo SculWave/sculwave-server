@@ -1,0 +1,14 @@
+port: 7880
+
+rtc:
+  tcp_port: 7881
+  # Small range keeps the Docker port mapping fast. Widen it for large servers
+  # (and update docker-compose.selfhost.yml to match).
+  port_range_start: 50000
+  port_range_end: 50200
+  use_external_ip: true
+
+# Key pair comes from LIVEKIT_KEYS (see docker-compose.selfhost.yml).
+
+redis:
+  address: redis:6379

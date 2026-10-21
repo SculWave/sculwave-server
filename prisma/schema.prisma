@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../server/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String   @id @default(cuid())
+  localUid    String   @unique
+  email       String   @unique
+  createdAt   DateTime @default(now())
+
+  networks Network[]
+  sessions Session[]
+}
+
+
+
+enum NetworkPlatformSupport {
+  JAVA_ONLY
+  BEDROCK_ONLY
+  JAVA_AND_BEDROCK
+}
+
+
+
+
+
+
+model Network {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name           String
+  nameNormalized String @unique
+  description    String?
+  imageUrl String?
+  logoUrl  String?
+  publicListed   Boolean @default(false)
+
+  platformSupport NetworkPlatformSupport @default(JAVA_ONLY)
+
+  javaAddress    String?
+  bedrockAddress String?
+
+  gameVersion String?
+  region      String?
+
+  websiteUrl String?
+  discordUrl String?
+
+  instanceId    String   @unique
+  activationKey String   @unique
+
+  active Boolean @default(true)
+
+  ownerId String
+  owner   User   @relation(fields: [ownerId], references: [id])
+
+  backends     Backend[]
+}
+
+
+model Session {
+  id String @id @default(cuid())
+
+  token String @unique
+
+  expiresAt DateTime
+
+  userId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model Backend {
+  id            String   @id @default(cuid())
+  networkId     String
+  network       Network  @relation(fields: [networkId], references: [id], onDelete: Cascade)
+  backendId     String   @unique
+  name          String
+  platform      String?
+  mcVersion     String?
+  pluginVersion String?
+
+
+  entryPoint    Boolean @default(false)
+  entryPointPriority Int?
+
+  players       Int      @default(0)
+  maxPlayers    Int      @default(0)
+  tps           Float    @default(20)
+  online        Boolean  @default(true)
+  lastSeen      DateTime @default(now())
+  createdAt     DateTime @default(now())
+}

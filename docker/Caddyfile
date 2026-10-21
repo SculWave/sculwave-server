@@ -1,0 +1,10 @@
+# Automatic HTTPS (Let's Encrypt). Browsers only allow microphone access on
+# HTTPS pages, so voice chat will not work over plain HTTP.
+{$APP_DOMAIN} {
+	encode gzip
+	reverse_proxy app:3000
+}
+
+{$LIVEKIT_DOMAIN} {
+	reverse_proxy livekit:7880
+}
