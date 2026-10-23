@@ -1,28 +1,60 @@
-# SculWave Self-Hosted
+# Sculwave
 
-A self-hosted SculWave instance with a local administration dashboard. The marketing homepage, browser voice client, hosted sign-in, billing, and legal/pricing pages have been removed. The root URL redirects to the local dashboard sign-in.
+**Voice communication for Minecraft communities.**
 
-## Run with Docker Compose
+Sculwave is an independent voice communication project designed to help Minecraft communities communicate while playing together. It includes client-side integration, server-side components, and a self-hosted voice infrastructure option.
 
-1. Copy `.env.example` to `.env`.
-2. Set `DASHBOARD_USERNAME` and a unique `DASHBOARD_PASSWORD` (at least 14 characters), set a strong `POSTGRES_PASSWORD`, and generate a LiveKit key pair for `LIVEKIT_API_KEY` and `LIVEKIT_API_SECRET`. Generate a password with `openssl rand -base64 32`.
-3. Start the stack:
+> **Beta notice:** Sculwave is under active development. Features, configuration, protocols, and deployment procedures may change. Use beta versions with appropriate caution.
 
-```bash
-docker compose -f docker-compose.selfhost.yml up -d --build
-```
+## Features
 
-4. Open [http://localhost:3000](http://localhost:3000).
+- **Minecraft integration** — connect voice communication with Minecraft communities.
+- **Self-hosting** — run your own Sculwave community infrastructure using the project's self-hosting setup.
+- **Community contributions** — help improve the project through bug reports, documentation, code reviews, and pull requests.
+- **Independent deployments** — self-hosting configuration and requirements are documented in the project repository.
 
-The dashboard requires the local username and password from `.env`. Successful login creates an HttpOnly, SameSite=Strict session cookie that expires after 12 hours; failed attempts are rate-limited. Keep `.env` private (`chmod 600 .env`) and keep the default `APP_BIND=127.0.0.1`. If remote access is needed, use HTTPS, set `COOKIE_SECURE=true`, and restrict network access. Do not expose an unauthenticated infrastructure API or dashboard directly to the public internet.
+Features and compatibility depend on the specific version and components you deploy.
 
-## Local development
+## Self-hosting
 
-```bash
-npm ci
-cp .env.example .env
-npm run build
-npm start
-```
+To deploy the community/self-hosted edition, see the [Self-Hosting Guide](docs/self-hosting.md).
 
-The app requires PostgreSQL, Redis, and LiveKit as configured in `.env`. See `.env.example` and `docker-compose.selfhost.yml` for the supported self-hosted setup.
+The guide covers:
+
+- Docker Compose installation and startup
+- Environment configuration and secrets
+- Application services and networking
+- Database and media backups
+- Troubleshooting and security precautions
+
+Always check the configuration files and documentation for the exact revision you deploy.
+
+## Contributing
+
+Contributions, testing, documentation improvements, and constructive code reviews are welcome.
+
+Before submitting changes, read [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Please report security vulnerabilities privately according to [SECURITY.md](SECURITY.md), rather than posting sensitive exploit details in public issues.
+
+## Security
+
+Sculwave welcomes independent security reviews. Public source availability does not mean the project has received a professional security audit or that its security has been independently certified.
+
+To report a vulnerability, follow the instructions in [SECURITY.md](SECURITY.md).
+
+## License
+
+Sculwave is distributed under the **PolyForm Shield License 1.0.0**. Read the [LICENSE](LICENSE) before using, modifying, or distributing the project.
+
+This is a source-available license with restrictions on certain competing uses. It is not an OSI-approved open-source license.
+
+## Independence and trademarks
+
+Sculwave is an independent project and is not affiliated with, endorsed by, or sponsored by Mojang Studios or Microsoft.
+
+Minecraft is a trademark of Microsoft Corporation. This project does not claim ownership of Minecraft or its associated trademarks.
+
+## Project status
+
+Sculwave is currently in beta. Review the repository's releases, issues, and documentation for the current implementation status and known limitations.
