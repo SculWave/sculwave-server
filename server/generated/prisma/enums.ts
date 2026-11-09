@@ -16,25 +16,3 @@ export const NetworkPlatformSupport = {
 } as const
 
 export type NetworkPlatformSupport = (typeof NetworkPlatformSupport)[keyof typeof NetworkPlatformSupport]
-
-
-export const BillingPlan = {
-  GRASS: 'GRASS',
-  IRON: 'IRON',
-  DIAMOND: 'DIAMOND',
-  NETHERITE: 'NETHERITE',
-  CUSTOM: 'CUSTOM'
-} as const
-
-export type BillingPlan = (typeof BillingPlan)[keyof typeof BillingPlan]
-
-
-export const SubscriptionStatus = {
-  ACTIVE: 'ACTIVE',
-  TRIALING: 'TRIALING',
-  PAST_DUE: 'PAST_DUE',
-  CANCELLED: 'CANCELLED',
-  EXPIRED: 'EXPIRED'
-} as const
-
-export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]

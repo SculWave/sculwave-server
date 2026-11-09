@@ -135,7 +135,7 @@ class SpeakingMonitorManager {
 
     room.on(RoomEvent.ParticipantDisconnected, async (participant) => {
       const gamertag = participant.identity?.toLowerCase()
-      if (!gamertag || gamertag) {
+      if (!gamertag || gamertag.startsWith(MONITOR_PREFIX)) {
         return
       }
 

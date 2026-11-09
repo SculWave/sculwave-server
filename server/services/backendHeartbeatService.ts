@@ -30,6 +30,7 @@ import { pendingLogoutStore } from './pendingLogoutRedis/pendingLogoutStore'
 import { error, info, log } from '../utils/logger'
 import { playerEventStore } from './playerEventRedis/PlayerEventStore'
 import { playerSessionStore } from './playerSessionRedis/PlayerSessionStor'
+import { svcBridge } from './svcBridge/SvcBridgeManager'
 
 export async function processBackendHeartbeat(
   io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>,
@@ -175,6 +176,10 @@ export async function processBackendHeartbeat(
 
 
   const hearMatrix = calculateHearablePlayers(mergedPlayers)
+
+  // Simple Voice Chat bridge: bridged players only publish, and players on both systems
+  // must not hear mod players twice. No-op when the bridge is not active for this room.
+  svcBridge.adjustMatrix(code, hearMatrix)
 
   const updates = buildDesiredSubscriptions(code, hearMatrix)
 

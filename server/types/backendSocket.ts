@@ -7,7 +7,12 @@ export interface BackendClientToServerEvents {
     players: Player[]
     timestamp: number
     voiceEnabled: boolean
+    /** Names of players connected to Simple Voice Chat (optional: older plugins omit it). */
+    svcPlayers?: string[]
   }) => void
+
+  /** One Opus frame from a Simple Voice Chat player, to be published into the room. */
+  'svc-audio': (gamertag: string, opus: Buffer) => void
 
   'backend-register': (data: { backendId: string; instanceId: string }) => void
 
@@ -30,7 +35,12 @@ export interface BackendServerToClientEvents {
     muted: boolean
     speaking: boolean
     timestamp: number
+    /** True when this participant is a Simple Voice Chat player bridged into the room. */
+    bridged?: boolean
   }) => void
+
+  /** One Opus frame of an app player for Simple Voice Chat players. Empty = end of utterance. */
+  'svc-playback': (gamertag: string, opus: Buffer) => void
 }
 
 export interface BackendInterServerEvents { }

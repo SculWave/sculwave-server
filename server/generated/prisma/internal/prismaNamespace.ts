@@ -387,10 +387,7 @@ export const ModelName = {
   User: 'User',
   Network: 'Network',
   Session: 'Session',
-  Backend: 'Backend',
-  Subscription: 'Subscription',
-  ActiveVoiceSession: 'ActiveVoiceSession',
-  SubscriptionEvent: 'SubscriptionEvent'
+  Backend: 'Backend'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "network" | "session" | "backend" | "subscription" | "activeVoiceSession" | "subscriptionEvent"
+    modelProps: "user" | "network" | "session" | "backend"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -706,228 +703,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Subscription: {
-      payload: Prisma.$SubscriptionPayload<ExtArgs>
-      fields: Prisma.SubscriptionFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.SubscriptionFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.SubscriptionFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>
-        }
-        findFirst: {
-          args: Prisma.SubscriptionFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.SubscriptionFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>
-        }
-        findMany: {
-          args: Prisma.SubscriptionFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
-        }
-        create: {
-          args: Prisma.SubscriptionCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>
-        }
-        createMany: {
-          args: Prisma.SubscriptionCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.SubscriptionCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
-        }
-        delete: {
-          args: Prisma.SubscriptionDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>
-        }
-        update: {
-          args: Prisma.SubscriptionUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>
-        }
-        deleteMany: {
-          args: Prisma.SubscriptionDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.SubscriptionUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.SubscriptionUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>[]
-        }
-        upsert: {
-          args: Prisma.SubscriptionUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionPayload>
-        }
-        aggregate: {
-          args: Prisma.SubscriptionAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSubscription>
-        }
-        groupBy: {
-          args: Prisma.SubscriptionGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SubscriptionGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.SubscriptionCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SubscriptionCountAggregateOutputType> | number
-        }
-      }
-    }
-    ActiveVoiceSession: {
-      payload: Prisma.$ActiveVoiceSessionPayload<ExtArgs>
-      fields: Prisma.ActiveVoiceSessionFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ActiveVoiceSessionFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ActiveVoiceSessionFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>
-        }
-        findFirst: {
-          args: Prisma.ActiveVoiceSessionFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ActiveVoiceSessionFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>
-        }
-        findMany: {
-          args: Prisma.ActiveVoiceSessionFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>[]
-        }
-        create: {
-          args: Prisma.ActiveVoiceSessionCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>
-        }
-        createMany: {
-          args: Prisma.ActiveVoiceSessionCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.ActiveVoiceSessionCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>[]
-        }
-        delete: {
-          args: Prisma.ActiveVoiceSessionDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>
-        }
-        update: {
-          args: Prisma.ActiveVoiceSessionUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>
-        }
-        deleteMany: {
-          args: Prisma.ActiveVoiceSessionDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ActiveVoiceSessionUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.ActiveVoiceSessionUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>[]
-        }
-        upsert: {
-          args: Prisma.ActiveVoiceSessionUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActiveVoiceSessionPayload>
-        }
-        aggregate: {
-          args: Prisma.ActiveVoiceSessionAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateActiveVoiceSession>
-        }
-        groupBy: {
-          args: Prisma.ActiveVoiceSessionGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ActiveVoiceSessionGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ActiveVoiceSessionCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ActiveVoiceSessionCountAggregateOutputType> | number
-        }
-      }
-    }
-    SubscriptionEvent: {
-      payload: Prisma.$SubscriptionEventPayload<ExtArgs>
-      fields: Prisma.SubscriptionEventFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.SubscriptionEventFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.SubscriptionEventFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>
-        }
-        findFirst: {
-          args: Prisma.SubscriptionEventFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.SubscriptionEventFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>
-        }
-        findMany: {
-          args: Prisma.SubscriptionEventFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>[]
-        }
-        create: {
-          args: Prisma.SubscriptionEventCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>
-        }
-        createMany: {
-          args: Prisma.SubscriptionEventCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.SubscriptionEventCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>[]
-        }
-        delete: {
-          args: Prisma.SubscriptionEventDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>
-        }
-        update: {
-          args: Prisma.SubscriptionEventUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>
-        }
-        deleteMany: {
-          args: Prisma.SubscriptionEventDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.SubscriptionEventUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.SubscriptionEventUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>[]
-        }
-        upsert: {
-          args: Prisma.SubscriptionEventUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubscriptionEventPayload>
-        }
-        aggregate: {
-          args: Prisma.SubscriptionEventAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSubscriptionEvent>
-        }
-        groupBy: {
-          args: Prisma.SubscriptionEventGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SubscriptionEventGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.SubscriptionEventCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SubscriptionEventCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -996,7 +771,6 @@ export const NetworkScalarFieldEnum = {
   instanceId: 'instanceId',
   activationKey: 'activationKey',
   active: 'active',
-  backendLimit: 'backendLimit',
   ownerId: 'ownerId'
 } as const
 
@@ -1035,61 +809,12 @@ export const BackendScalarFieldEnum = {
 export type BackendScalarFieldEnum = (typeof BackendScalarFieldEnum)[keyof typeof BackendScalarFieldEnum]
 
 
-export const SubscriptionScalarFieldEnum = {
-  id: 'id',
-  networkId: 'networkId',
-  plan: 'plan',
-  concurrentLimit: 'concurrentLimit',
-  status: 'status',
-  currentPeriodStart: 'currentPeriodStart',
-  currentPeriodEnd: 'currentPeriodEnd',
-  pendingPlan: 'pendingPlan',
-  pendingConcurrentLimit: 'pendingConcurrentLimit',
-  pendingEffectiveAt: 'pendingEffectiveAt',
-  cancelAtPeriodEnd: 'cancelAtPeriodEnd',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
-
-
-export const ActiveVoiceSessionScalarFieldEnum = {
-  id: 'id',
-  instanceId: 'instanceId',
-  playerUuid: 'playerUuid',
-  backendId: 'backendId',
-  connectedAt: 'connectedAt',
-  lastSeen: 'lastSeen'
-} as const
-
-export type ActiveVoiceSessionScalarFieldEnum = (typeof ActiveVoiceSessionScalarFieldEnum)[keyof typeof ActiveVoiceSessionScalarFieldEnum]
-
-
-export const SubscriptionEventScalarFieldEnum = {
-  id: 'id',
-  subscriptionId: 'subscriptionId',
-  type: 'type',
-  payload: 'payload',
-  createdAt: 'createdAt'
-} as const
-
-export type SubscriptionEventScalarFieldEnum = (typeof SubscriptionEventScalarFieldEnum)[keyof typeof SubscriptionEventScalarFieldEnum]
-
-
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
-
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1106,15 +831,6 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1197,48 +913,6 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
- * Reference to a field of type 'BillingPlan'
- */
-export type EnumBillingPlanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BillingPlan'>
-    
-
-
-/**
- * Reference to a field of type 'BillingPlan[]'
- */
-export type ListEnumBillingPlanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BillingPlan[]'>
-    
-
-
-/**
- * Reference to a field of type 'SubscriptionStatus'
- */
-export type EnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus'>
-    
-
-
-/**
- * Reference to a field of type 'SubscriptionStatus[]'
- */
-export type ListEnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 /**
@@ -1355,9 +1029,6 @@ export type GlobalOmitConfig = {
   network?: Prisma.NetworkOmit
   session?: Prisma.SessionOmit
   backend?: Prisma.BackendOmit
-  subscription?: Prisma.SubscriptionOmit
-  activeVoiceSession?: Prisma.ActiveVoiceSessionOmit
-  subscriptionEvent?: Prisma.SubscriptionEventOmit
 }
 
 /* Types for Logging */

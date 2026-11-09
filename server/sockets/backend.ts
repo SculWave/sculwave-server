@@ -21,6 +21,9 @@ import { destroyLiveKitRoom } from '../services/livekit/rooms'
 import { roomIndexStore } from '../services/roomIndexRedis/RoomIndexStore'
 import { speakingMonitor } from '../services/livekit/SpeakingMonitor'
 import { voiceStateBridge } from '../services/livekit/VoiceStateBridge'
+import { svcBridge } from '../services/svcBridge/SvcBridgeManager'
+import { SVC_BRIDGE_ENABLED } from '../config/env'
+import { SVC_MAX_OPUS_PACKET_BYTES } from '../config/constants'
 
 type BackendNamespace = Namespace<
   BackendClientToServerEvents,
@@ -39,8 +42,15 @@ export function registerBackendSocketHandlers(io: Server) {
   backendNamespace.on('connection', (socket) => {
     log('BackendSocket', 'CONNECTED socket=%s', socket.id)
 
+    // Room of this backend, remembered so the high-rate 'svc-audio' events need no lookup.
+    let svcRoomCode: string | undefined
+
     socket.on('disconnect', (reason) => {
       backendSocketStore.delete(socket.data.backendId!)
+
+      if (svcRoomCode) {
+        void svcBridge.stopRoom(svcRoomCode)
+      }
 
 
       log('BackendSocket', 'DISCONNECTED socket=%s reason=%s', socket.id, reason)
@@ -151,6 +161,8 @@ export function registerBackendSocketHandlers(io: Server) {
         return
       }
 
+      svcRoomCode = room.roomCode
+
       await processBackendHeartbeat(
         io,
         room,
@@ -165,6 +177,33 @@ export function registerBackendSocketHandlers(io: Server) {
         socket.data.backendId!,
         socket.data.instanceId!,
       )
+
+      if (SVC_BRIDGE_ENABLED) {
+        // processBackendHeartbeat updated room.players in place, so positions are current.
+        const svcPlayers = Array.isArray(payload.svcPlayers) ? payload.svcPlayers : []
+
+        void svcBridge.sync(room.roomCode, svcPlayers, room.players, (gamertag, opus) => {
+          socket.emit('svc-playback', gamertag, opus)
+        })
+      }
+    })
+
+    // Simple Voice Chat bridge: one Opus frame from a mod player.
+    socket.on('svc-audio', (gamertag, opus) => {
+      if (!SVC_BRIDGE_ENABLED || !socket.data.authenticated || !svcRoomCode) return
+
+      if (
+        typeof gamertag !== 'string' ||
+        gamertag.length === 0 ||
+        gamertag.length > 32 ||
+        !Buffer.isBuffer(opus) ||
+        opus.length === 0 ||
+        opus.length > SVC_MAX_OPUS_PACKET_BYTES
+      ) {
+        return
+      }
+
+      svcBridge.ingest(svcRoomCode, gamertag, opus)
     })
 
     socket.on('backend-shutdown', async () => {
@@ -186,6 +225,7 @@ export function registerBackendSocketHandlers(io: Server) {
       }
 
       io.to(room.roomCode).emit('room-expired')
+      await svcBridge.stopRoom(room.roomCode)
       await speakingMonitor.stop(room.roomCode)
       await destroyLiveKitRoom(room.roomCode)
 

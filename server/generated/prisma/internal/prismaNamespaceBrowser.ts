@@ -54,10 +54,7 @@ export const ModelName = {
   User: 'User',
   Network: 'Network',
   Session: 'Session',
-  Backend: 'Backend',
-  Subscription: 'Subscription',
-  ActiveVoiceSession: 'ActiveVoiceSession',
-  SubscriptionEvent: 'SubscriptionEvent'
+  Backend: 'Backend'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -105,7 +102,6 @@ export const NetworkScalarFieldEnum = {
   instanceId: 'instanceId',
   activationKey: 'activationKey',
   active: 'active',
-  backendLimit: 'backendLimit',
   ownerId: 'ownerId'
 } as const
 
@@ -144,61 +140,12 @@ export const BackendScalarFieldEnum = {
 export type BackendScalarFieldEnum = (typeof BackendScalarFieldEnum)[keyof typeof BackendScalarFieldEnum]
 
 
-export const SubscriptionScalarFieldEnum = {
-  id: 'id',
-  networkId: 'networkId',
-  plan: 'plan',
-  concurrentLimit: 'concurrentLimit',
-  status: 'status',
-  currentPeriodStart: 'currentPeriodStart',
-  currentPeriodEnd: 'currentPeriodEnd',
-  pendingPlan: 'pendingPlan',
-  pendingConcurrentLimit: 'pendingConcurrentLimit',
-  pendingEffectiveAt: 'pendingEffectiveAt',
-  cancelAtPeriodEnd: 'cancelAtPeriodEnd',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
-
-
-export const ActiveVoiceSessionScalarFieldEnum = {
-  id: 'id',
-  instanceId: 'instanceId',
-  playerUuid: 'playerUuid',
-  backendId: 'backendId',
-  connectedAt: 'connectedAt',
-  lastSeen: 'lastSeen'
-} as const
-
-export type ActiveVoiceSessionScalarFieldEnum = (typeof ActiveVoiceSessionScalarFieldEnum)[keyof typeof ActiveVoiceSessionScalarFieldEnum]
-
-
-export const SubscriptionEventScalarFieldEnum = {
-  id: 'id',
-  subscriptionId: 'subscriptionId',
-  type: 'type',
-  payload: 'payload',
-  createdAt: 'createdAt'
-} as const
-
-export type SubscriptionEventScalarFieldEnum = (typeof SubscriptionEventScalarFieldEnum)[keyof typeof SubscriptionEventScalarFieldEnum]
-
-
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
-
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -215,13 +162,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

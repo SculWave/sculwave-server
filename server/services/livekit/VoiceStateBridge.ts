@@ -3,6 +3,7 @@ import { voiceStateStore, VoicePlayerState } from './VoiceStateStore'
 import { backendSocketStore } from '../backendRedis/backendSocketStore'
 import { roomIndexStore } from '../roomIndexRedis/RoomIndexStore'
 import { log } from '@/server/utils/logger'
+import { svcBridge } from '../svcBridge/SvcBridgeManager'
 import type {
   BackendClientToServerEvents,
   BackendServerToClientEvents,
@@ -74,6 +75,7 @@ class VoiceStateBridge {
         muted: state.muted,
         speaking: state.speaking,
         timestamp: state.timestamp,
+        bridged: svcBridge.isBridged(state.roomCode, state.gamertag),
       })
 
       log(

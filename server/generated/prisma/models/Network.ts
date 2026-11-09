@@ -20,18 +20,8 @@ export type NetworkModel = runtime.Types.Result.DefaultSelection<Prisma.$Network
 
 export type AggregateNetwork = {
   _count: NetworkCountAggregateOutputType | null
-  _avg: NetworkAvgAggregateOutputType | null
-  _sum: NetworkSumAggregateOutputType | null
   _min: NetworkMinAggregateOutputType | null
   _max: NetworkMaxAggregateOutputType | null
-}
-
-export type NetworkAvgAggregateOutputType = {
-  backendLimit: number | null
-}
-
-export type NetworkSumAggregateOutputType = {
-  backendLimit: number | null
 }
 
 export type NetworkMinAggregateOutputType = {
@@ -53,7 +43,6 @@ export type NetworkMinAggregateOutputType = {
   instanceId: string | null
   activationKey: string | null
   active: boolean | null
-  backendLimit: number | null
   ownerId: string | null
 }
 
@@ -76,7 +65,6 @@ export type NetworkMaxAggregateOutputType = {
   instanceId: string | null
   activationKey: string | null
   active: boolean | null
-  backendLimit: number | null
   ownerId: string | null
 }
 
@@ -99,19 +87,10 @@ export type NetworkCountAggregateOutputType = {
   instanceId: number
   activationKey: number
   active: number
-  backendLimit: number
   ownerId: number
   _all: number
 }
 
-
-export type NetworkAvgAggregateInputType = {
-  backendLimit?: true
-}
-
-export type NetworkSumAggregateInputType = {
-  backendLimit?: true
-}
 
 export type NetworkMinAggregateInputType = {
   id?: true
@@ -132,7 +111,6 @@ export type NetworkMinAggregateInputType = {
   instanceId?: true
   activationKey?: true
   active?: true
-  backendLimit?: true
   ownerId?: true
 }
 
@@ -155,7 +133,6 @@ export type NetworkMaxAggregateInputType = {
   instanceId?: true
   activationKey?: true
   active?: true
-  backendLimit?: true
   ownerId?: true
 }
 
@@ -178,7 +155,6 @@ export type NetworkCountAggregateInputType = {
   instanceId?: true
   activationKey?: true
   active?: true
-  backendLimit?: true
   ownerId?: true
   _all?: true
 }
@@ -221,18 +197,6 @@ export type NetworkAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: NetworkAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: NetworkSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: NetworkMinAggregateInputType
@@ -263,8 +227,6 @@ export type NetworkGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: NetworkCountAggregateInputType | true
-  _avg?: NetworkAvgAggregateInputType
-  _sum?: NetworkSumAggregateInputType
   _min?: NetworkMinAggregateInputType
   _max?: NetworkMaxAggregateInputType
 }
@@ -288,11 +250,8 @@ export type NetworkGroupByOutputType = {
   instanceId: string
   activationKey: string
   active: boolean
-  backendLimit: number
   ownerId: string
   _count: NetworkCountAggregateOutputType | null
-  _avg: NetworkAvgAggregateOutputType | null
-  _sum: NetworkSumAggregateOutputType | null
   _min: NetworkMinAggregateOutputType | null
   _max: NetworkMaxAggregateOutputType | null
 }
@@ -334,11 +293,9 @@ export type NetworkWhereInput = {
   instanceId?: Prisma.StringFilter<"Network"> | string
   activationKey?: Prisma.StringFilter<"Network"> | string
   active?: Prisma.BoolFilter<"Network"> | boolean
-  backendLimit?: Prisma.IntFilter<"Network"> | number
   ownerId?: Prisma.StringFilter<"Network"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   backends?: Prisma.BackendListRelationFilter
-  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
 }
 
 export type NetworkOrderByWithRelationInput = {
@@ -360,11 +317,9 @@ export type NetworkOrderByWithRelationInput = {
   instanceId?: Prisma.SortOrder
   activationKey?: Prisma.SortOrder
   active?: Prisma.SortOrder
-  backendLimit?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
   backends?: Prisma.BackendOrderByRelationAggregateInput
-  subscription?: Prisma.SubscriptionOrderByWithRelationInput
 }
 
 export type NetworkWhereUniqueInput = Prisma.AtLeast<{
@@ -389,11 +344,9 @@ export type NetworkWhereUniqueInput = Prisma.AtLeast<{
   websiteUrl?: Prisma.StringNullableFilter<"Network"> | string | null
   discordUrl?: Prisma.StringNullableFilter<"Network"> | string | null
   active?: Prisma.BoolFilter<"Network"> | boolean
-  backendLimit?: Prisma.IntFilter<"Network"> | number
   ownerId?: Prisma.StringFilter<"Network"> | string
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   backends?: Prisma.BackendListRelationFilter
-  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
 }, "id" | "nameNormalized" | "instanceId" | "activationKey">
 
 export type NetworkOrderByWithAggregationInput = {
@@ -415,13 +368,10 @@ export type NetworkOrderByWithAggregationInput = {
   instanceId?: Prisma.SortOrder
   activationKey?: Prisma.SortOrder
   active?: Prisma.SortOrder
-  backendLimit?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   _count?: Prisma.NetworkCountOrderByAggregateInput
-  _avg?: Prisma.NetworkAvgOrderByAggregateInput
   _max?: Prisma.NetworkMaxOrderByAggregateInput
   _min?: Prisma.NetworkMinOrderByAggregateInput
-  _sum?: Prisma.NetworkSumOrderByAggregateInput
 }
 
 export type NetworkScalarWhereWithAggregatesInput = {
@@ -446,7 +396,6 @@ export type NetworkScalarWhereWithAggregatesInput = {
   instanceId?: Prisma.StringWithAggregatesFilter<"Network"> | string
   activationKey?: Prisma.StringWithAggregatesFilter<"Network"> | string
   active?: Prisma.BoolWithAggregatesFilter<"Network"> | boolean
-  backendLimit?: Prisma.IntWithAggregatesFilter<"Network"> | number
   ownerId?: Prisma.StringWithAggregatesFilter<"Network"> | string
 }
 
@@ -469,10 +418,8 @@ export type NetworkCreateInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   owner: Prisma.UserCreateNestedOneWithoutNetworksInput
   backends?: Prisma.BackendCreateNestedManyWithoutNetworkInput
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutNetworkInput
 }
 
 export type NetworkUncheckedCreateInput = {
@@ -494,10 +441,8 @@ export type NetworkUncheckedCreateInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   ownerId: string
   backends?: Prisma.BackendUncheckedCreateNestedManyWithoutNetworkInput
-  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutNetworkInput
 }
 
 export type NetworkUpdateInput = {
@@ -519,10 +464,8 @@ export type NetworkUpdateInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   owner?: Prisma.UserUpdateOneRequiredWithoutNetworksNestedInput
   backends?: Prisma.BackendUpdateManyWithoutNetworkNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneWithoutNetworkNestedInput
 }
 
 export type NetworkUncheckedUpdateInput = {
@@ -544,10 +487,8 @@ export type NetworkUncheckedUpdateInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   backends?: Prisma.BackendUncheckedUpdateManyWithoutNetworkNestedInput
-  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutNetworkNestedInput
 }
 
 export type NetworkCreateManyInput = {
@@ -569,7 +510,6 @@ export type NetworkCreateManyInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   ownerId: string
 }
 
@@ -592,7 +532,6 @@ export type NetworkUpdateManyMutationInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type NetworkUncheckedUpdateManyInput = {
@@ -614,7 +553,6 @@ export type NetworkUncheckedUpdateManyInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -647,12 +585,7 @@ export type NetworkCountOrderByAggregateInput = {
   instanceId?: Prisma.SortOrder
   activationKey?: Prisma.SortOrder
   active?: Prisma.SortOrder
-  backendLimit?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
-}
-
-export type NetworkAvgOrderByAggregateInput = {
-  backendLimit?: Prisma.SortOrder
 }
 
 export type NetworkMaxOrderByAggregateInput = {
@@ -674,7 +607,6 @@ export type NetworkMaxOrderByAggregateInput = {
   instanceId?: Prisma.SortOrder
   activationKey?: Prisma.SortOrder
   active?: Prisma.SortOrder
-  backendLimit?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
 }
 
@@ -697,12 +629,7 @@ export type NetworkMinOrderByAggregateInput = {
   instanceId?: Prisma.SortOrder
   activationKey?: Prisma.SortOrder
   active?: Prisma.SortOrder
-  backendLimit?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
-}
-
-export type NetworkSumOrderByAggregateInput = {
-  backendLimit?: Prisma.SortOrder
 }
 
 export type NetworkScalarRelationFilter = {
@@ -764,14 +691,6 @@ export type EnumNetworkPlatformSupportFieldUpdateOperationsInput = {
   set?: $Enums.NetworkPlatformSupport
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type NetworkCreateNestedOneWithoutBackendsInput = {
   create?: Prisma.XOR<Prisma.NetworkCreateWithoutBackendsInput, Prisma.NetworkUncheckedCreateWithoutBackendsInput>
   connectOrCreate?: Prisma.NetworkCreateOrConnectWithoutBackendsInput
@@ -784,20 +703,6 @@ export type NetworkUpdateOneRequiredWithoutBackendsNestedInput = {
   upsert?: Prisma.NetworkUpsertWithoutBackendsInput
   connect?: Prisma.NetworkWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.NetworkUpdateToOneWithWhereWithoutBackendsInput, Prisma.NetworkUpdateWithoutBackendsInput>, Prisma.NetworkUncheckedUpdateWithoutBackendsInput>
-}
-
-export type NetworkCreateNestedOneWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.NetworkCreateWithoutSubscriptionInput, Prisma.NetworkUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.NetworkCreateOrConnectWithoutSubscriptionInput
-  connect?: Prisma.NetworkWhereUniqueInput
-}
-
-export type NetworkUpdateOneRequiredWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.NetworkCreateWithoutSubscriptionInput, Prisma.NetworkUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.NetworkCreateOrConnectWithoutSubscriptionInput
-  upsert?: Prisma.NetworkUpsertWithoutSubscriptionInput
-  connect?: Prisma.NetworkWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.NetworkUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.NetworkUpdateWithoutSubscriptionInput>, Prisma.NetworkUncheckedUpdateWithoutSubscriptionInput>
 }
 
 export type NetworkCreateWithoutOwnerInput = {
@@ -819,9 +724,7 @@ export type NetworkCreateWithoutOwnerInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   backends?: Prisma.BackendCreateNestedManyWithoutNetworkInput
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutNetworkInput
 }
 
 export type NetworkUncheckedCreateWithoutOwnerInput = {
@@ -843,9 +746,7 @@ export type NetworkUncheckedCreateWithoutOwnerInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   backends?: Prisma.BackendUncheckedCreateNestedManyWithoutNetworkInput
-  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutNetworkInput
 }
 
 export type NetworkCreateOrConnectWithoutOwnerInput = {
@@ -896,7 +797,6 @@ export type NetworkScalarWhereInput = {
   instanceId?: Prisma.StringFilter<"Network"> | string
   activationKey?: Prisma.StringFilter<"Network"> | string
   active?: Prisma.BoolFilter<"Network"> | boolean
-  backendLimit?: Prisma.IntFilter<"Network"> | number
   ownerId?: Prisma.StringFilter<"Network"> | string
 }
 
@@ -919,9 +819,7 @@ export type NetworkCreateWithoutBackendsInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   owner: Prisma.UserCreateNestedOneWithoutNetworksInput
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutNetworkInput
 }
 
 export type NetworkUncheckedCreateWithoutBackendsInput = {
@@ -943,9 +841,7 @@ export type NetworkUncheckedCreateWithoutBackendsInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
   ownerId: string
-  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutNetworkInput
 }
 
 export type NetworkCreateOrConnectWithoutBackendsInput = {
@@ -983,9 +879,7 @@ export type NetworkUpdateWithoutBackendsInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   owner?: Prisma.UserUpdateOneRequiredWithoutNetworksNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneWithoutNetworkNestedInput
 }
 
 export type NetworkUncheckedUpdateWithoutBackendsInput = {
@@ -1007,121 +901,7 @@ export type NetworkUncheckedUpdateWithoutBackendsInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutNetworkNestedInput
-}
-
-export type NetworkCreateWithoutSubscriptionInput = {
-  id?: string
-  createdAt?: Date | string
-  name: string
-  nameNormalized: string
-  description?: string | null
-  imageUrl?: string | null
-  logoUrl?: string | null
-  publicListed?: boolean
-  platformSupport?: $Enums.NetworkPlatformSupport
-  javaAddress?: string | null
-  bedrockAddress?: string | null
-  gameVersion?: string | null
-  region?: string | null
-  websiteUrl?: string | null
-  discordUrl?: string | null
-  instanceId: string
-  activationKey: string
-  active?: boolean
-  backendLimit?: number
-  owner: Prisma.UserCreateNestedOneWithoutNetworksInput
-  backends?: Prisma.BackendCreateNestedManyWithoutNetworkInput
-}
-
-export type NetworkUncheckedCreateWithoutSubscriptionInput = {
-  id?: string
-  createdAt?: Date | string
-  name: string
-  nameNormalized: string
-  description?: string | null
-  imageUrl?: string | null
-  logoUrl?: string | null
-  publicListed?: boolean
-  platformSupport?: $Enums.NetworkPlatformSupport
-  javaAddress?: string | null
-  bedrockAddress?: string | null
-  gameVersion?: string | null
-  region?: string | null
-  websiteUrl?: string | null
-  discordUrl?: string | null
-  instanceId: string
-  activationKey: string
-  active?: boolean
-  backendLimit?: number
-  ownerId: string
-  backends?: Prisma.BackendUncheckedCreateNestedManyWithoutNetworkInput
-}
-
-export type NetworkCreateOrConnectWithoutSubscriptionInput = {
-  where: Prisma.NetworkWhereUniqueInput
-  create: Prisma.XOR<Prisma.NetworkCreateWithoutSubscriptionInput, Prisma.NetworkUncheckedCreateWithoutSubscriptionInput>
-}
-
-export type NetworkUpsertWithoutSubscriptionInput = {
-  update: Prisma.XOR<Prisma.NetworkUpdateWithoutSubscriptionInput, Prisma.NetworkUncheckedUpdateWithoutSubscriptionInput>
-  create: Prisma.XOR<Prisma.NetworkCreateWithoutSubscriptionInput, Prisma.NetworkUncheckedCreateWithoutSubscriptionInput>
-  where?: Prisma.NetworkWhereInput
-}
-
-export type NetworkUpdateToOneWithWhereWithoutSubscriptionInput = {
-  where?: Prisma.NetworkWhereInput
-  data: Prisma.XOR<Prisma.NetworkUpdateWithoutSubscriptionInput, Prisma.NetworkUncheckedUpdateWithoutSubscriptionInput>
-}
-
-export type NetworkUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  nameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publicListed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  platformSupport?: Prisma.EnumNetworkPlatformSupportFieldUpdateOperationsInput | $Enums.NetworkPlatformSupport
-  javaAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bedrockAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gameVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  instanceId?: Prisma.StringFieldUpdateOperationsInput | string
-  activationKey?: Prisma.StringFieldUpdateOperationsInput | string
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
-  owner?: Prisma.UserUpdateOneRequiredWithoutNetworksNestedInput
-  backends?: Prisma.BackendUpdateManyWithoutNetworkNestedInput
-}
-
-export type NetworkUncheckedUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  nameNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publicListed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  platformSupport?: Prisma.EnumNetworkPlatformSupportFieldUpdateOperationsInput | $Enums.NetworkPlatformSupport
-  javaAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bedrockAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gameVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  discordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  instanceId?: Prisma.StringFieldUpdateOperationsInput | string
-  activationKey?: Prisma.StringFieldUpdateOperationsInput | string
-  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
-  backends?: Prisma.BackendUncheckedUpdateManyWithoutNetworkNestedInput
 }
 
 export type NetworkCreateManyOwnerInput = {
@@ -1143,7 +923,6 @@ export type NetworkCreateManyOwnerInput = {
   instanceId: string
   activationKey: string
   active?: boolean
-  backendLimit?: number
 }
 
 export type NetworkUpdateWithoutOwnerInput = {
@@ -1165,9 +944,7 @@ export type NetworkUpdateWithoutOwnerInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   backends?: Prisma.BackendUpdateManyWithoutNetworkNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneWithoutNetworkNestedInput
 }
 
 export type NetworkUncheckedUpdateWithoutOwnerInput = {
@@ -1189,9 +966,7 @@ export type NetworkUncheckedUpdateWithoutOwnerInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
   backends?: Prisma.BackendUncheckedUpdateManyWithoutNetworkNestedInput
-  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutNetworkNestedInput
 }
 
 export type NetworkUncheckedUpdateManyWithoutOwnerInput = {
@@ -1213,7 +988,6 @@ export type NetworkUncheckedUpdateManyWithoutOwnerInput = {
   instanceId?: Prisma.StringFieldUpdateOperationsInput | string
   activationKey?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  backendLimit?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -1266,11 +1040,9 @@ export type NetworkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   instanceId?: boolean
   activationKey?: boolean
   active?: boolean
-  backendLimit?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   backends?: boolean | Prisma.Network$backendsArgs<ExtArgs>
-  subscription?: boolean | Prisma.Network$subscriptionArgs<ExtArgs>
   _count?: boolean | Prisma.NetworkCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["network"]>
 
@@ -1293,7 +1065,6 @@ export type NetworkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   instanceId?: boolean
   activationKey?: boolean
   active?: boolean
-  backendLimit?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["network"]>
@@ -1317,7 +1088,6 @@ export type NetworkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   instanceId?: boolean
   activationKey?: boolean
   active?: boolean
-  backendLimit?: boolean
   ownerId?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["network"]>
@@ -1341,15 +1111,13 @@ export type NetworkSelectScalar = {
   instanceId?: boolean
   activationKey?: boolean
   active?: boolean
-  backendLimit?: boolean
   ownerId?: boolean
 }
 
-export type NetworkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "name" | "nameNormalized" | "description" | "imageUrl" | "logoUrl" | "publicListed" | "platformSupport" | "javaAddress" | "bedrockAddress" | "gameVersion" | "region" | "websiteUrl" | "discordUrl" | "instanceId" | "activationKey" | "active" | "backendLimit" | "ownerId", ExtArgs["result"]["network"]>
+export type NetworkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "name" | "nameNormalized" | "description" | "imageUrl" | "logoUrl" | "publicListed" | "platformSupport" | "javaAddress" | "bedrockAddress" | "gameVersion" | "region" | "websiteUrl" | "discordUrl" | "instanceId" | "activationKey" | "active" | "ownerId", ExtArgs["result"]["network"]>
 export type NetworkInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   backends?: boolean | Prisma.Network$backendsArgs<ExtArgs>
-  subscription?: boolean | Prisma.Network$subscriptionArgs<ExtArgs>
   _count?: boolean | Prisma.NetworkCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type NetworkIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1364,7 +1132,6 @@ export type $NetworkPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     owner: Prisma.$UserPayload<ExtArgs>
     backends: Prisma.$BackendPayload<ExtArgs>[]
-    subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1385,7 +1152,6 @@ export type $NetworkPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     instanceId: string
     activationKey: string
     active: boolean
-    backendLimit: number
     ownerId: string
   }, ExtArgs["result"]["network"]>
   composites: {}
@@ -1783,7 +1549,6 @@ export interface Prisma__NetworkClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   backends<T extends Prisma.Network$backendsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Network$backendsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BackendPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscription<T extends Prisma.Network$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Network$subscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1831,7 +1596,6 @@ export interface NetworkFieldRefs {
   readonly instanceId: Prisma.FieldRef<"Network", 'String'>
   readonly activationKey: Prisma.FieldRef<"Network", 'String'>
   readonly active: Prisma.FieldRef<"Network", 'Boolean'>
-  readonly backendLimit: Prisma.FieldRef<"Network", 'Int'>
   readonly ownerId: Prisma.FieldRef<"Network", 'String'>
 }
     
@@ -2255,25 +2019,6 @@ export type Network$backendsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.BackendScalarFieldEnum | Prisma.BackendScalarFieldEnum[]
-}
-
-/**
- * Network.subscription
- */
-export type Network$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscription
-   */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscription
-   */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
 }
 
 /**

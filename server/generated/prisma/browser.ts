@@ -37,18 +37,3 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type Backend = Prisma.BackendModel
-/**
- * Model Subscription
- * 
- */
-export type Subscription = Prisma.SubscriptionModel
-/**
- * Model ActiveVoiceSession
- * 
- */
-export type ActiveVoiceSession = Prisma.ActiveVoiceSessionModel
-/**
- * Model SubscriptionEvent
- * 
- */
-export type SubscriptionEvent = Prisma.SubscriptionEventModel

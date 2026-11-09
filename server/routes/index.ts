@@ -25,7 +25,6 @@ import { handleNetworkSettings } from './dashboard/networkSettings'
 import { handleDiscoveryNetworks } from './networks/networks'
 import { handleResolveNetwork } from './networks/resolve'
 import { handleNetworkMedia } from './dashboard/networkMedia'
-import { handleDownloadPlugin } from './handleDownloadPlugin'
 import { TELEMETRY_ENABLED } from '../config/mode'
 
 export async function handleApiRoutes(
@@ -41,7 +40,6 @@ export async function handleApiRoutes(
     return true
   }
 
-  if (await handleDownloadPlugin(req, res, pathname)) return true
 
 
   if (await handleCreateNetwork(req, res, pathname)) return true
